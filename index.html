@@ -1,0 +1,462 @@
+<!DOCTYPE html>
+<!--
+  ============================================================
+  FREDDY KARPOV - PORTFOLIO
+  Single file. No build step. Open it, edit it, host it.
+
+  BEFORE YOU SEND THIS, FILL IN EVERY [ADD ...] MARKER:
+    1. Search the file for "ADD" and replace each one.
+    2. Reel links: YouTube channel, SoundCloud, any Drive folder.
+    3. Shopify stores: if the sites are down, link screenshots instead.
+    4. Delete any block you do not want. Nothing depends on anything else.
+
+  TO PUT IT ONLINE (free, ~5 minutes):
+    - Netlify Drop: netlify.com/drop - drag this file's folder in.
+    - Or GitHub Pages: new repo, upload index.html, Settings > Pages.
+  ============================================================
+-->
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Freddy Karpov - Football analysis, video and digital production</title>
+<meta name="description" content="Freddy Karpov. Football video and performance analysis, video editing and digital production. Based in Tallinn, working remotely.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,400;12..96,600;12..96,800&family=IBM+Plex+Mono:wght@400;500&family=IBM+Plex+Sans:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --ink:#12161A;
+    --panel:#1A2027;
+    --rule:#2C363F;
+    --chalk:#EDEFEA;
+    --muted:#7E8991;
+    --amber:#E2A03F;
+    --teal:#4E9AA0;
+    --maxw:1080px;
+    --display:"Bricolage Grotesque","Helvetica Neue",Arial,sans-serif;
+    --body:"IBM Plex Sans","Helvetica Neue",Arial,sans-serif;
+    --mono:"IBM Plex Mono",ui-monospace,Menlo,Consolas,monospace;
+  }
+
+  *{box-sizing:border-box}
+  html{scroll-behavior:smooth}
+  body{
+    margin:0;
+    background:var(--ink);
+    color:var(--chalk);
+    font-family:var(--body);
+    font-size:17px;
+    line-height:1.62;
+    -webkit-font-smoothing:antialiased;
+  }
+  a{color:inherit}
+  :focus-visible{outline:2px solid var(--amber);outline-offset:3px;border-radius:2px}
+
+  .wrap{max-width:var(--maxw);margin:0 auto;padding:0 28px}
+
+  /* ---------- masthead ---------- */
+  .masthead{padding:72px 0 40px}
+  .eyebrow{
+    font-family:var(--mono);font-size:11px;letter-spacing:.16em;
+    text-transform:uppercase;color:var(--muted);margin:0 0 22px
+  }
+  .name{
+    font-family:var(--display);
+    font-weight:800;
+    font-size:clamp(44px,8.5vw,92px);
+    line-height:.94;
+    letter-spacing:-.025em;
+    margin:0 0 20px;
+  }
+  .standfirst{
+    font-size:clamp(18px,2.4vw,23px);
+    line-height:1.45;
+    max-width:34ch;
+    margin:0 0 30px;
+    color:var(--chalk);
+  }
+  .standfirst em{font-style:normal;color:var(--amber)}
+  .meta{
+    font-family:var(--mono);font-size:12.5px;color:var(--muted);
+    display:flex;flex-wrap:wrap;gap:10px 26px;margin:0 0 8px;padding:0;list-style:none;
+  }
+  .meta a{color:var(--chalk);text-decoration:none;border-bottom:1px solid var(--rule);padding-bottom:1px}
+  .meta a:hover{border-bottom-color:var(--amber);color:var(--amber)}
+
+  /* ---------- signature: the tagged timeline ---------- */
+  .reel{padding:12px 0 78px}
+  .reel-head{
+    display:flex;justify-content:space-between;align-items:baseline;
+    font-family:var(--mono);font-size:11px;letter-spacing:.14em;
+    text-transform:uppercase;color:var(--muted);
+    border-bottom:1px solid var(--rule);padding-bottom:10px;margin-bottom:0;
+  }
+  .track{position:relative;padding:34px 0 0}
+  .track-line{
+    position:absolute;left:0;right:0;top:52px;height:2px;background:var(--rule);
+  }
+  .track-fill{
+    position:absolute;left:0;top:52px;height:2px;background:var(--amber);
+    width:0;transition:width 1.6s cubic-bezier(.22,.8,.3,1);
+  }
+  .loaded .track-fill{width:100%}
+  .clips{
+    display:grid;grid-template-columns:repeat(6,1fr);gap:0;
+    position:relative;list-style:none;margin:0;padding:0;
+  }
+  .clip{position:relative;padding:0 10px 0 0}
+  .clip-btn{
+    display:block;width:100%;text-align:left;background:none;border:0;padding:0 0 26px;
+    color:var(--muted);cursor:pointer;font-family:var(--mono);
+  }
+  .clip-yr{
+    display:block;font-size:13px;letter-spacing:.04em;color:var(--chalk);margin-bottom:4px;
+  }
+  .clip-tag{
+    display:block;font-size:10.5px;letter-spacing:.1em;text-transform:uppercase;
+    line-height:1.5;min-height:2.9em;
+  }
+  .clip-btn::after{
+    content:"";position:absolute;left:0;bottom:-4px;width:9px;height:9px;
+    border-radius:50%;background:var(--ink);border:2px solid var(--rule);
+    transition:border-color .2s ease,transform .2s ease;
+  }
+  .clip-btn:hover::after,.clip-btn:focus-visible::after{border-color:var(--amber);transform:scale(1.25)}
+  .clip-btn:hover .clip-tag,.clip-btn:focus-visible .clip-tag{color:var(--amber)}
+  .clip.now .clip-btn::after{background:var(--amber);border-color:var(--amber)}
+  .clip.now .clip-yr{color:var(--amber)}
+
+  /* ---------- sections ---------- */
+  .band{border-top:1px solid var(--rule);padding:64px 0 8px}
+  .band-label{
+    font-family:var(--mono);font-size:11px;letter-spacing:.16em;text-transform:uppercase;
+    color:var(--muted);margin:0 0 34px;
+  }
+  .band-label span{color:var(--amber)}
+  h2{
+    font-family:var(--display);font-weight:600;letter-spacing:-.02em;
+    font-size:clamp(27px,4vw,40px);line-height:1.1;margin:0 0 14px;
+  }
+  .lede{max-width:60ch;color:var(--muted);margin:0 0 46px;font-size:17px}
+
+  .entry{
+    display:grid;grid-template-columns:150px 1fr;gap:0 40px;
+    padding:30px 0;border-top:1px solid var(--rule);
+  }
+  .entry:first-of-type{border-top:0;padding-top:6px}
+  .entry-when{
+    font-family:var(--mono);font-size:12px;color:var(--muted);
+    letter-spacing:.03em;padding-top:5px;
+  }
+  .entry-role{font-family:var(--display);font-weight:600;font-size:21px;letter-spacing:-.01em;margin:0 0 3px}
+  .entry-org{font-family:var(--mono);font-size:12.5px;color:var(--teal);margin:0 0 14px;letter-spacing:.02em}
+  .entry ul{margin:0;padding:0 0 0 18px}
+  .entry li{margin:0 0 7px}
+  .entry li::marker{color:var(--rule)}
+
+  /* ---------- creative cards ---------- */
+  .cards{display:grid;grid-template-columns:repeat(auto-fit,minmax(268px,1fr));gap:1px;background:var(--rule);border:1px solid var(--rule)}
+  .card{background:var(--panel);padding:28px 26px 26px;display:flex;flex-direction:column}
+  .card-kind{
+    font-family:var(--mono);font-size:10.5px;letter-spacing:.14em;text-transform:uppercase;
+    color:var(--teal);margin:0 0 16px;
+  }
+  .card h3{font-family:var(--display);font-weight:600;font-size:20px;margin:0 0 10px;letter-spacing:-.01em}
+  .card p{margin:0 0 18px;font-size:15.5px;color:var(--muted);line-height:1.6}
+  .stat{
+    font-family:var(--mono);font-size:12px;color:var(--chalk);
+    border-top:1px solid var(--rule);padding-top:13px;margin-top:auto;
+  }
+  .stat b{color:var(--amber);font-weight:500}
+  .card-link{
+    display:inline-block;margin-top:13px;font-family:var(--mono);font-size:12px;
+    color:var(--chalk);text-decoration:none;border-bottom:1px solid var(--rule);
+  }
+  .card-link:hover{color:var(--amber);border-bottom-color:var(--amber)}
+
+  /* ---------- toolkit ---------- */
+  .kit{display:grid;grid-template-columns:repeat(auto-fit,minmax(210px,1fr));gap:34px 40px}
+  .kit h3{
+    font-family:var(--mono);font-size:11px;letter-spacing:.14em;text-transform:uppercase;
+    color:var(--muted);margin:0 0 12px;font-weight:400;
+  }
+  .kit ul{list-style:none;margin:0;padding:0;font-size:15.5px}
+  .kit li{padding:4px 0;border-bottom:1px solid var(--rule)}
+
+  /* ---------- close ---------- */
+  .close{border-top:1px solid var(--rule);padding:66px 0 90px;margin-top:64px}
+  .close h2{max-width:22ch;margin-bottom:26px}
+  .close p{max-width:52ch;color:var(--muted);margin:0 0 32px}
+  .mailto{
+    display:inline-block;font-family:var(--mono);font-size:14px;letter-spacing:.03em;
+    color:var(--ink);background:var(--amber);text-decoration:none;
+    padding:14px 24px;transition:transform .18s ease;
+  }
+  .mailto:hover{transform:translateY(-2px)}
+  .colophon{
+    font-family:var(--mono);font-size:11px;color:var(--muted);
+    margin-top:52px;letter-spacing:.04em;
+  }
+
+  @media (max-width:760px){
+    .clips{grid-template-columns:repeat(3,1fr);gap:30px 0}
+    .track-line,.track-fill{display:none}
+    .clip-btn::after{display:none}
+    .clip{border-left:2px solid var(--rule);padding-left:12px}
+    .clip.now{border-left-color:var(--amber)}
+    .entry{grid-template-columns:1fr;gap:0}
+    .entry-when{padding:0 0 8px}
+  }
+  @media (prefers-reduced-motion:reduce){
+    html{scroll-behavior:auto}
+    *{transition:none!important;animation:none!important}
+    .track-fill{width:100%}
+  }
+</style>
+</head>
+<body>
+
+<header class="masthead wrap">
+  <p class="eyebrow">Tallinn, Estonia &middot; EU citizen &middot; Working remotely</p>
+  <h1 class="name">Freddy<br>Karpov</h1>
+  <p class="standfirst">I break footage down and I build things. <em>Football video and performance analysis</em>, and digital production for people who need something made properly.</p>
+  <ul class="meta">
+    <li><a href="mailto:freddy.karpov@gmail.com">freddy.karpov@gmail.com</a></li>
+    <li>+372 5302 0624</li>
+    <li><a href="[ADD LINKEDIN URL]">LinkedIn</a></li>
+  </ul>
+</header>
+
+<!-- ============ SIGNATURE: tagged timeline ============ -->
+<section class="reel wrap" aria-label="Career timeline">
+  <div class="reel-head">
+    <span>Timeline</span>
+    <span>2015 &ndash; present</span>
+  </div>
+  <div class="track">
+    <div class="track-line" aria-hidden="true"></div>
+    <div class="track-fill" aria-hidden="true"></div>
+    <ul class="clips">
+      <li class="clip">
+        <button class="clip-btn" data-goto="football">
+          <span class="clip-yr">2015</span>
+          <span class="clip-tag">Sports centre<br>administration</span>
+        </button>
+      </li>
+      <li class="clip">
+        <button class="clip-btn" data-goto="football">
+          <span class="clip-yr">2018</span>
+          <span class="clip-tag">Football Studies<br>Solent</span>
+        </button>
+      </li>
+      <li class="clip">
+        <button class="clip-btn" data-goto="football">
+          <span class="clip-yr">2019</span>
+          <span class="clip-tag">Video and match<br>analysis</span>
+        </button>
+      </li>
+      <li class="clip">
+        <button class="clip-btn" data-goto="football">
+          <span class="clip-yr">2021</span>
+          <span class="clip-tag">UEFA youth<br>national teams</span>
+        </button>
+      </li>
+      <li class="clip">
+        <button class="clip-btn" data-goto="build">
+          <span class="clip-yr">2024</span>
+          <span class="clip-tag">Australia, Asia<br>and building online</span>
+        </button>
+      </li>
+      <li class="clip now">
+        <button class="clip-btn" data-goto="football">
+          <span class="clip-yr">2026</span>
+          <span class="clip-tag">Estonian Ski<br>Association</span>
+        </button>
+      </li>
+    </ul>
+  </div>
+</section>
+
+<!-- ============ FOOTBALL ============ -->
+<section class="band wrap" id="football">
+  <p class="band-label"><span>01</span> &nbsp;Football</p>
+  <h2>Footage in, decisions out.</h2>
+  <p class="lede">Two years analysing matches for clubs in Estonia, Sweden and Norway, then two and a half years running youth national team operations for the Estonian FA. I know what makes analysis usable to a coach, because I sat in the room when it was used and when it was ignored.</p>
+
+  <div class="entry">
+    <div class="entry-when">Mar 2026 &ndash; present</div>
+    <div>
+      <p class="entry-role">Head of Nordic Ski Disciplines</p>
+      <p class="entry-org">Estonian Ski Association</p>
+      <ul>
+        <li>Annual budget planning and expenditure monitoring across cross-country, ski jumping and Nordic combined.</li>
+        <li>International competition trips for elite athletes, end to end.</li>
+        <li>Federation contact point for clubs and coaches; cooperation with FIS and Scandinavian federations.</li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="entry">
+    <div class="entry-when">Aug 2021 &ndash; Jan 2024</div>
+    <div>
+      <p class="entry-role">Youth National Teams Manager</p>
+      <p class="entry-org">Estonian Football Association</p>
+      <ul>
+        <li>Ran four UEFA youth national teams simultaneously, U15 through U19, plus the Futsal A-Team.</li>
+        <li>Coordinated 15+ international trips across 10+ European countries.</li>
+        <li>Logistics Manager for the UEFA Women's U17 Euro 2023 Final Tournament.</li>
+        <li>Primary liaison with UEFA and foreign football associations.</li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="entry">
+    <div class="entry-when">Jun 2019 &ndash; Aug 2021</div>
+    <div>
+      <p class="entry-role">Video and Performance Analyst</p>
+      <p class="entry-org">FC Flora Tallinn &middot; GAIS (SWE) &middot; Lysekloster IL (NOR)</p>
+      <ul>
+        <li>First team analysis at FC Flora: match recording, clip tagging, insight reports for coaching staff.</li>
+        <li>Video analyst for GAIS in the Swedish Allsvenskan, delivered remotely.</li>
+        <li>Match analyst for Lysekloster IL in Norway, building KPI profiles for individual players.</li>
+        <li>Youth coaching alongside the analysis work, which is where I learned what coaches actually watch.</li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="entry">
+    <div class="entry-when">2018 &ndash; 2021</div>
+    <div>
+      <p class="entry-role">BA (Hons) Football Studies</p>
+      <p class="entry-org">Solent University, Southampton &middot; First Class Honours</p>
+    </div>
+  </div>
+</section>
+
+<!-- ============ BUILT ============ -->
+<section class="band wrap" id="build">
+  <p class="band-label"><span>02</span> &nbsp;Made and shipped</p>
+  <h2>Things I built on my own time.</h2>
+  <p class="lede">Nobody commissioned any of this. I wanted to know whether I could do it, so I did it, and the numbers are what they are.</p>
+
+  <div class="cards">
+    <div class="card">
+      <p class="card-kind">Short-form video</p>
+      <h3>YouTube shorts channel</h3>
+      <p>Built and ran a shorts channel solo. Concept, edit, captions, thumbnails, publishing schedule. Cut in CapCut.</p>
+      <p class="stat">38 shorts &middot; <b>136,400 views</b> &middot; one month</p>
+      <a class="card-link" href="[ADD YOUTUBE CHANNEL URL]">Watch the channel &rarr;</a>
+    </div>
+
+    <div class="card">
+      <p class="card-kind">Ecommerce</p>
+      <h3>Two Shopify stores</h3>
+      <p>Built both from zero: store architecture, UI and UX, product pages, creative, and Meta ad campaigns. One in Australia, one in Europe. Roughly 20 orders each. Neither made money, and I can tell you exactly where each one leaked.</p>
+      <p class="stat">Shopify &middot; Meta Ads &middot; UI/UX &middot; ad creative</p>
+      <a class="card-link" href="[ADD STORE URL OR SCREENSHOT LINK]">See the build &rarr;</a>
+    </div>
+
+    <div class="card">
+      <p class="card-kind">Software</p>
+      <h3>SUMA</h3>
+      <p>An app I built end to end using AI tooling, with no formal development background. Proof that I will get a thing working rather than wait to be taught.</p>
+      <p class="stat">Built with AI tooling &middot; VS Code</p>
+      <a class="card-link" href="[ADD SUMA LINK OR SCREENSHOTS]">See it &rarr;</a>
+    </div>
+
+    <!-- Delete this whole card if you would rather leave music off the page. -->
+    <div class="card">
+      <p class="card-kind">Audio</p>
+      <h3>Music production</h3>
+      <p>Written lyrics since school and produced hundreds of instrumentals in Ableton and FL Studio. Released tracks and cut the videos for some of them.</p>
+      <p class="stat">Ableton &middot; FL Studio &middot; writing &middot; video</p>
+      <a class="card-link" href="[ADD SOUNDCLOUD URL]">Listen &rarr;</a>
+    </div>
+  </div>
+</section>
+
+<!-- ============ TOOLKIT ============ -->
+<section class="band wrap" id="toolkit">
+  <p class="band-label"><span>03</span> &nbsp;Toolkit</p>
+  <h2>What I work with.</h2>
+  <p class="lede">Tools I have actually used on real work, not a list of things I have heard of.</p>
+
+  <div class="kit">
+    <div>
+      <h3>Analysis</h3>
+      <ul>
+        <li>Wyscout</li>
+        <li>Match recording and clip tagging</li>
+        <li>KPI profiling</li>
+        <li>Opposition and player reports</li>
+      </ul>
+    </div>
+    <div>
+      <h3>Video and design</h3>
+      <ul>
+        <li>CapCut</li>
+        <li>Canva</li>
+        <li>YouTube Studio</li>
+        <li>Short-form editing and captions</li>
+      </ul>
+    </div>
+    <div>
+      <h3>Web and commerce</h3>
+      <ul>
+        <li>Shopify</li>
+        <li>Wix</li>
+        <li>Meta Ads</li>
+        <li>VS Code</li>
+      </ul>
+    </div>
+    <div>
+      <h3>Audio</h3>
+      <ul>
+        <li>Ableton Live</li>
+        <li>FL Studio</li>
+      </ul>
+    </div>
+    <div>
+      <h3>Everything else</h3>
+      <ul>
+        <li>Microsoft Office</li>
+        <li>AI tooling, daily</li>
+        <li>Hardware repair, phones and laptops</li>
+      </ul>
+    </div>
+    <div>
+      <h3>Languages</h3>
+      <ul>
+        <li>Estonian, native</li>
+        <li>English, C2</li>
+        <li>Russian, conversational</li>
+        <li>German and Spanish, basic</li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<!-- ============ CLOSE ============ -->
+<section class="close wrap">
+  <h2>Available for remote work, from anywhere.</h2>
+  <p>Analysis, video, or production. Full-time, part-time or per project. I am in Tallinn on EU citizenship and I have worked across time zones from three continents, so scheduling has never been the problem.</p>
+  <a class="mailto" href="mailto:freddy.karpov@gmail.com">freddy.karpov@gmail.com</a>
+  <p class="colophon">Tallinn &middot; Updated [ADD MONTH YEAR]</p>
+</section>
+
+<script>
+  document.addEventListener('DOMContentLoaded', function () {
+    requestAnimationFrame(function () { document.body.classList.add('loaded'); });
+
+    document.querySelectorAll('.clip-btn').forEach(function (btn) {
+      btn.addEventListener('click', function () {
+        var target = document.getElementById(btn.dataset.goto);
+        if (target) target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+      });
+    });
+  });
+</script>
+
+</body>
+</html>
