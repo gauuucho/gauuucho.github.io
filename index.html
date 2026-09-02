@@ -1,18 +1,23 @@
 <!DOCTYPE html>
 <!--
   ============================================================
-  FREDDY KARPOV - PORTFOLIO
-  Single file. No build step. Open it, edit it, host it.
+  FREDDY KARPOV - PORTFOLIO  (index.html)
 
-  BEFORE YOU SEND THIS, FILL IN EVERY [ADD ...] MARKER:
-    1. Search the file for "ADD" and replace each one.
-    2. Reel links: YouTube channel, SoundCloud, any Drive folder.
-    3. Shopify stores: if the sites are down, link screenshots instead.
-    4. Delete any block you do not want. Nothing depends on anything else.
+  WHAT CHANGED IN THIS VERSION
+    1. New first section: Player analysis, with a button through to analysis.html
+    2. Shopify card moved to last position in "Made and shipped"
+    3. "See the build" link removed from the Shopify card
+    4. SUMA and Grub Goblin merged into one card with two app links
+    5. Timeline markers now point at the analysis section where relevant
 
-  TO PUT IT ONLINE (free, ~5 minutes):
-    - Netlify Drop: netlify.com/drop - drag this file's folder in.
-    - Or GitHub Pages: new repo, upload index.html, Settings > Pages.
+  FILL IN EVERY [ADD ...] MARKER BEFORE SENDING.
+  Search the file for "ADD" and replace each one.
+
+  BOTH FILES GO IN THE SAME PLACE:
+    index.html      <- this file, repo root
+    analysis.html   <- the report page, repo root
+    /img            <- pitch maps, charts, screenshots
+    /files          <- PDFs
   ============================================================
 -->
 <html lang="en">
@@ -156,6 +161,46 @@
   .entry li{margin:0 0 7px}
   .entry li::marker{color:var(--rule)}
 
+  /* ---------- report dossier ---------- */
+  .dossier{
+    display:grid;grid-template-columns:250px 1fr;gap:0;
+    background:var(--panel);border:1px solid var(--rule);margin-bottom:26px;
+  }
+  .dossier-meta{
+    border-right:1px solid var(--rule);padding:28px 24px;
+    font-family:var(--mono);font-size:12px;line-height:1.55;
+  }
+  .dossier-meta dt{
+    color:var(--muted);font-size:10.5px;letter-spacing:.12em;text-transform:uppercase;
+  }
+  .dossier-meta dd{margin:2px 0 16px;color:var(--chalk)}
+  .dossier-meta dd:last-child{margin-bottom:0}
+  .dossier-body{padding:28px 28px 30px}
+  .dossier-body h3{
+    font-family:var(--display);font-weight:600;font-size:23px;
+    letter-spacing:-.01em;margin:0 0 12px;
+  }
+  .dossier-body p{margin:0 0 16px;color:var(--muted);font-size:16px}
+  .dossier-body ul{margin:0 0 24px;padding:0 0 0 18px;font-size:15.5px;color:var(--chalk)}
+  .dossier-body li{margin:0 0 6px}
+  .dossier-body li::marker{color:var(--amber)}
+
+  .btn{
+    display:inline-block;font-family:var(--mono);font-size:13px;letter-spacing:.03em;
+    color:var(--ink);background:var(--amber);text-decoration:none;
+    padding:13px 22px;transition:transform .18s ease;
+  }
+  .btn:hover{transform:translateY(-2px)}
+  .btn.ghost{
+    background:none;color:var(--chalk);border:1px solid var(--rule);
+  }
+  .btn.ghost:hover{border-color:var(--amber);color:var(--amber)}
+
+  .note{
+    font-family:var(--mono);font-size:12px;color:var(--muted);
+    border-left:2px solid var(--rule);padding:2px 0 2px 14px;max-width:62ch;
+  }
+
   /* ---------- creative cards ---------- */
   .cards{display:grid;grid-template-columns:repeat(auto-fit,minmax(268px,1fr));gap:1px;background:var(--rule);border:1px solid var(--rule)}
   .card{background:var(--panel);padding:28px 26px 26px;display:flex;flex-direction:column}
@@ -171,7 +216,7 @@
   }
   .stat b{color:var(--amber);font-weight:500}
   .card-link{
-    display:inline-block;margin-top:13px;font-family:var(--mono);font-size:12px;
+    display:inline-block;margin-top:13px;margin-right:18px;font-family:var(--mono);font-size:12px;
     color:var(--chalk);text-decoration:none;border-bottom:1px solid var(--rule);
   }
   .card-link:hover{color:var(--amber);border-bottom-color:var(--amber)}
@@ -208,6 +253,8 @@
     .clip.now{border-left-color:var(--amber)}
     .entry{grid-template-columns:1fr;gap:0}
     .entry-when{padding:0 0 8px}
+    .dossier{grid-template-columns:1fr}
+    .dossier-meta{border-right:0;border-bottom:1px solid var(--rule)}
   }
   @media (prefers-reduced-motion:reduce){
     html{scroll-behavior:auto}
@@ -225,7 +272,7 @@
   <ul class="meta">
     <li><a href="mailto:freddy.karpov@gmail.com">freddy.karpov@gmail.com</a></li>
     <li>+372 5302 0624</li>
-    <li><a href="https://www.linkedin.com/in/freddy-karpov-632015180/">LinkedIn</a></li>
+    <li><a href="[ADD LINKEDIN URL]">LinkedIn</a></li>
   </ul>
 </header>
 
@@ -252,7 +299,7 @@
         </button>
       </li>
       <li class="clip">
-        <button class="clip-btn" data-goto="football">
+        <button class="clip-btn" data-goto="analysis">
           <span class="clip-yr">2019</span>
           <span class="clip-tag">Video and match<br>analysis</span>
         </button>
@@ -270,18 +317,62 @@
         </button>
       </li>
       <li class="clip now">
-        <button class="clip-btn" data-goto="football">
+        <button class="clip-btn" data-goto="analysis">
           <span class="clip-yr">2026</span>
-          <span class="clip-tag">Estonian Ski<br>Association</span>
+          <span class="clip-tag">Scouting reports<br>and ski federation</span>
         </button>
       </li>
     </ul>
   </div>
 </section>
 
-<!-- ============ FOOTBALL ============ -->
+<!-- ============ 01 PLAYER ANALYSIS ============ -->
+<section class="band wrap" id="analysis">
+  <p class="band-label"><span>01</span> &nbsp;Player analysis</p>
+  <h2>Reports written to be used, not filed.</h2>
+  <p class="lede">Two years tagging matches for FC Flora, GAIS in the Swedish Allsvenskan and Lysekloster IL in Norway, then two and a half years inside a federation watching what coaches do with a report once it lands. First Class degree in Football Studies from Solent. I work in Wyscout, tag to a written competency framework rather than to a feeling, and hand over evidence a coach can act on in ten minutes.</p>
+
+  <!-- ---- REPORT 1: Kristofer Käit ----
+       Duplicate this whole <article> block to add a second report.
+       Point the button at a new page, e.g. analysis-playername.html
+  -->
+  <article class="dossier">
+    <dl class="dossier-meta">
+      <dt>Player</dt>
+      <dd>Kristofer Käit</dd>
+      <dt>Position</dt>
+      <dd>Right centre back</dd>
+      <dt>Club</dt>
+      <dd>Paide Linnameeskond</dd>
+      <dt>Competition</dt>
+      <dd>Estonian Meistriliiga</dd>
+      <dt>Academy</dt>
+      <dd>FC Porto, Rio Ave</dd>
+      <dt>Match watched</dt>
+      <dd>FCI Levadia v Paide<br>Estonian Cup, 26 Aug</dd>
+      <dt>Framework</dt>
+      <dd>360scouting centre back model</dd>
+    </dl>
+    <div class="dossier-body">
+      <h3>A centre back tested against a better side</h3>
+      <p>A full live-coded viewing scored against six defined centre back competencies rather than a general impression. Every judgement in the report traces back to a timestamped action, and the actions are published alongside the conclusions so a coach can disagree with me and check.</p>
+      <ul>
+        <li>55 logged actions, each coded to a competency and a pitch zone</li>
+        <li>Defensive action map, duel map and distribution arrows, built in Python</li>
+        <li>Competency breakdown with the evidence behind each score</li>
+        <li>Clip reel grouped by competency, not by chronology</li>
+        <li>Game state split, because his job changed once Paide went behind</li>
+      </ul>
+      <a class="btn" href="analysis.html">Read the full report</a>
+    </div>
+  </article>
+
+  <p class="note">This is a single cup tie against a stronger opponent, so it is a sample and it is labelled as one. Routine build-up distribution is under-represented and the report says so rather than filling the gap with adjectives.</p>
+</section>
+
+<!-- ============ 02 FOOTBALL ============ -->
 <section class="band wrap" id="football">
-  <p class="band-label"><span>01</span> &nbsp;Football</p>
+  <p class="band-label"><span>02</span> &nbsp;Football</p>
   <h2>Footage in, decisions out.</h2>
   <p class="lede">Two years analysing matches for clubs in Estonia, Sweden and Norway, then two and a half years running youth national team operations for the Estonian FA. I know what makes analysis usable to a coach, because I sat in the room when it was used and when it was ignored.</p>
 
@@ -335,11 +426,11 @@
   </div>
 </section>
 
-<!-- ============ BUILT ============ -->
+<!-- ============ 03 BUILT ============ -->
 <section class="band wrap" id="build">
-  <p class="band-label"><span>02</span> &nbsp;Made and shipped</p>
+  <p class="band-label"><span>03</span> &nbsp;Made and shipped</p>
   <h2>Things I built on my own time.</h2>
-  <p class="lede">Nobody commissioned any of this. I wanted to know whether I could do it, so I did it. Two of these you can open and use right now.</p>
+  <p class="lede">Nobody commissioned any of this. I wanted to know whether I could do it, so I did it, and the numbers are what they are.</p>
 
   <div class="cards">
     <div class="card">
@@ -347,34 +438,20 @@
       <h3>YouTube shorts channel</h3>
       <p>Built and ran a shorts channel solo. Concept, edit, captions, thumbnails, publishing schedule. Cut in CapCut.</p>
       <p class="stat">38 shorts &middot; <b>136,400 views</b> &middot; one month</p>
-      <a class="card-link" href="https://www.youtube.com/@sinistr.o">Watch the channel &rarr;</a>
+      <a class="card-link" href="[ADD YOUTUBE CHANNEL URL]">Watch the channel &rarr;</a>
     </div>
 
-    <div class="card">
-      <p class="card-kind">Ecommerce</p>
-      <h3>Two Shopify stores</h3>
-      <p>Built both from zero: store architecture, UI and UX, product pages, creative, and Meta ad campaigns. One in Australia, one in Europe. Roughly 20 orders each. Neither made money, and I can tell you exactly where each one leaked.</p>
-      <p class="stat">Shopify &middot; Meta Ads &middot; UI/UX &middot; ad creative</p>
-      <a class="card-link" href="[ADD STORE URL OR SCREENSHOT LINK]">See the build &rarr;</a>
-    </div>
-
+    <!-- SUMA + Grub Goblin, merged -->
     <div class="card">
       <p class="card-kind">Software</p>
-      <h3>SUMA</h3>
-      <p>Suma is a mobile-first expense tracker that uses AI to scan receipts, auto-convert currencies and generate ready-to-submit expense reports — built for business travellers and accountants. Built end to end with AI tooling and no formal development background. Try the demo without signing up.</p>
+      <h3>SUMA and Grub Goblin</h3>
+      <p>Two apps built end to end with AI tooling and no formal development background. [ADD ONE LINE ON WHAT SUMA DOES.] [ADD ONE LINE ON WHAT GRUB GOBLIN DOES.] Both are proof that I will get a thing working rather than wait to be taught how.</p>
       <p class="stat">Built with AI tooling &middot; VS Code</p>
-      <a class="card-link" href="https://suma-phi.vercel.app/">Open the demo &rarr;</a>
+      <a class="card-link" href="[ADD SUMA URL]">SUMA &rarr;</a>
+      <a class="card-link" href="[ADD GRUB GOBLIN URL]">Grub Goblin &rarr;</a>
     </div>
 
-    <div class="card">
-      <p class="card-kind">Software</p>
-      <h3>Grub Goblin</h3>
-      <p>A recipe app, built the same way. No signup, just open it and use it.</p>
-      <p class="stat">Built with AI tooling &middot; VS Code</p>
-      <a class="card-link" href="https://grubgoblin.netlify.app/">Open the app &rarr;</a>
-    </div>
-
-<!-- MUSIC CARD - hidden for now. Remove this line and the one at the bottom to show it again.
+    <!-- Delete this whole card if you would rather leave music off the page. -->
     <div class="card">
       <p class="card-kind">Audio</p>
       <h3>Music production</h3>
@@ -382,13 +459,20 @@
       <p class="stat">Ableton &middot; FL Studio &middot; writing &middot; video</p>
       <a class="card-link" href="[ADD SOUNDCLOUD URL]">Listen &rarr;</a>
     </div>
--->
+
+    <!-- Ecommerce moved last, no link, both stores are offline -->
+    <div class="card">
+      <p class="card-kind">Ecommerce</p>
+      <h3>Two Shopify stores</h3>
+      <p>Built both from zero: store architecture, UI and UX, product pages, creative, and Meta ad campaigns. One in Australia, one in Europe. Roughly 20 orders each. Neither made money, and I can tell you exactly where each one leaked.</p>
+      <p class="stat">Shopify &middot; Meta Ads &middot; UI/UX &middot; ad creative</p>
+    </div>
   </div>
 </section>
 
-<!-- ============ TOOLKIT ============ -->
+<!-- ============ 04 TOOLKIT ============ -->
 <section class="band wrap" id="toolkit">
-  <p class="band-label"><span>03</span> &nbsp;Toolkit</p>
+  <p class="band-label"><span>04</span> &nbsp;Toolkit</p>
   <h2>What I work with.</h2>
   <p class="lede">Tools I have actually used on real work, not a list of things I have heard of.</p>
 
@@ -400,6 +484,15 @@
         <li>Match recording and clip tagging</li>
         <li>KPI profiling</li>
         <li>Opposition and player reports</li>
+      </ul>
+    </div>
+    <div>
+      <h3>Data</h3>
+      <ul>
+        <li>Python</li>
+        <li>mplsoccer pitch graphics</li>
+        <li>StatsBomb open data</li>
+        <li>Excel tagging workbooks</li>
       </ul>
     </div>
     <div>
@@ -428,14 +521,6 @@
       </ul>
     </div>
     <div>
-      <h3>Everything else</h3>
-      <ul>
-        <li>Microsoft Office</li>
-        <li>AI tooling, daily</li>
-        <li>Hardware repair, phones and laptops</li>
-      </ul>
-    </div>
-    <div>
       <h3>Languages</h3>
       <ul>
         <li>Estonian, native</li>
@@ -452,7 +537,7 @@
   <h2>Available for remote work, from anywhere.</h2>
   <p>Analysis, video, or production. Full-time, part-time or per project. I am in Tallinn on EU citizenship and I have worked across time zones from three continents, so scheduling has never been the problem.</p>
   <a class="mailto" href="mailto:freddy.karpov@gmail.com">freddy.karpov@gmail.com</a>
-  <p class="colophon">Tallinn &middot; Updated August, 2026</p>
+  <p class="colophon">Tallinn &middot; Updated [ADD MONTH YEAR]</p>
 </section>
 
 <script>
